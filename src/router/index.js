@@ -19,6 +19,11 @@ const routes = [
         name: "notas",
         component: () => import("../views/NotasView.vue"),
       },
+      {
+        path: "/home/chat",
+        name: "chat",
+        component: () => import("../views/ChatView.vue"),
+      },
     ],
   },
 ];

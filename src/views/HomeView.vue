@@ -24,7 +24,7 @@
         <v-list-item-group v-model="group" active-class="green text--accent-4">
           <v-list-item>
             <v-list-item-icon>
-              <v-icon>mdi-home</v-icon>
+              <v-icon>fa-solid fa-clipboard</v-icon>
             </v-list-item-icon>
             <v-list-item-title @click="drawer = false"
               ><router-link to="home/notas"
@@ -35,9 +35,11 @@
 
           <v-list-item>
             <v-list-item-icon>
-              <v-icon>mdi-account</v-icon>
+              <v-icon>fa-solid fa-comments</v-icon>
             </v-list-item-icon>
-            <v-list-item-title to="/home/chat">Account</v-list-item-title>
+            <v-list-item-title>
+              <router-link to="home/chat">Chat</router-link>
+            </v-list-item-title>
           </v-list-item>
         </v-list-item-group>
       </v-list>
