@@ -1,12 +1,6 @@
 <template>
   <div>
-    <v-app-bar
-      absolute
-      color="#A7B9A1"
-      dark
-      shrink-on-scroll
-      scroll-target="#scrolling-techniques-2"
-    >
+    <v-app-bar absolute color="#A7B9A1" dark shrink-on-scroll>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
       <v-app-bar-title>DAGBOK</v-app-bar-title>
@@ -32,7 +26,11 @@
             <v-list-item-icon>
               <v-icon>mdi-home</v-icon>
             </v-list-item-icon>
-            <v-list-item-title @click="drawer = false">Home</v-list-item-title>
+            <v-list-item-title @click="drawer = false"
+              ><router-link to="home/dashboard"
+                >Home</router-link
+              ></v-list-item-title
+            >
           </v-list-item>
 
           <v-list-item>
@@ -44,15 +42,35 @@
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
-    <router-view />
+
+    <DashboardView />
+
+    <v-main>
+      <v-container>
+        <router-view />
+      </v-container>
+    </v-main>
   </div>
 </template>
 
 <script>
+import DashboardView from "./DashboardView.vue";
 export default {
+  name: "HomeView",
+  components: {
+    DashboardView,
+  },
+
   data: () => ({
     drawer: false,
     group: null,
   }),
 };
 </script>
+
+<style scoped>
+* {
+  width: 100%;
+  height: auto;
+}
+</style>

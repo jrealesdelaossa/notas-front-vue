@@ -24,5 +24,6 @@ export default {
   background: linear-gradient(145deg, #a7b9a1, #fff, #e8d276);
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: "Montserrat", sans-serif;
 }
 </style>

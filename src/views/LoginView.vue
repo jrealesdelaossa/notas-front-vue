@@ -1,11 +1,6 @@
 <template>
   <v-app class="container">
-    <v-card
-      :loading="loading"
-      color="#F5F7F4"
-      class="mx-auto my-auto pa-12"
-      max-width="400"
-    >
+    <v-card color="#F5F7F4" class="mx-auto my-auto pa-12" max-width="400">
       <v-img width="120" src="@/assets/notepad.svg" class="mx-auto mb-8">
       </v-img>
 
@@ -44,7 +39,25 @@
             Iniciar
           </v-btn>
 
-          <v-btn color="#E8D276" class="mr-4" @click="reset"> Registro </v-btn>
+          <v-dialog v-model="dialog" persistent max-width="800">
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn color="#E8D276" v-bind="attrs" v-on="on" class="mr-4">
+                Registro
+              </v-btn>
+            </template>
+            <v-card>
+              <v-card-title class="text-h5"> Registro de usuario </v-card-title>
+              <v-card-text>
+                <RegistrationForm @closeDialog="dialog = false" />
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="#DC8686" @click="dialog = false">
+                  Cancelar
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
         </v-row>
       </v-form>
     </v-card>
@@ -52,13 +65,17 @@
 </template>
 
 <script>
+import RegistrationForm from "@/components/RegistrationForm.vue";
+import axios from "axios";
+
 export default {
   name: "LoginView",
   data: () => ({
+    dialog: false,
     valid: true,
-    name: "",
+    name: "julián",
     nameRules: [(v) => !!v || "Nombre de usuario es requerido."],
-    password: "Password",
+    password: "1234567811",
     showEye: false,
     rules: {
       required: (value) => !!value || "Required.",
@@ -67,20 +84,34 @@ export default {
     },
     checkbox: false,
   }),
-
   methods: {
-    validate() {
-      this.$refs.form.validate();
-      this.$router.push("/home");
+    async validate() {
+      const isValid = this.$refs.form.validate();
+      if (isValid) {
+        await axios
+          .post("http://localhost:3000/usuario/login", {
+            nombre: this.name,
+            password: this.password,
+          })
+          .then((response) => {
+            console.log(response);
+            this.$store.dispatch("setUserInfoAction", response.data);
+            this.$router.push("/home");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     },
   },
+  components: { RegistrationForm },
 };
 </script>
 
 <style scoped>
 .container {
   width: 100vw;
-  height: 100vh;
+  height: auto;
 }
 
 * {
