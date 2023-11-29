@@ -27,8 +27,8 @@
               <v-icon>mdi-home</v-icon>
             </v-list-item-icon>
             <v-list-item-title @click="drawer = false"
-              ><router-link to="home/dashboard"
-                >Home</router-link
+              ><router-link to="home/notas"
+                >Notas</router-link
               ></v-list-item-title
             >
           </v-list-item>
@@ -37,7 +37,7 @@
             <v-list-item-icon>
               <v-icon>mdi-account</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Account</v-list-item-title>
+            <v-list-item-title to="/home/chat">Account</v-list-item-title>
           </v-list-item>
         </v-list-item-group>
       </v-list>
