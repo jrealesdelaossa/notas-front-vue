@@ -55,9 +55,11 @@ export default {
           .then((response) => {
             if (response.status === 201) {
               this.$emit("updateNotes");
+              this.resetForm();
+              this.$emit("closeCreateNote");
+            } else if (response.status === 409) {
+              console.log(response);
             }
-            this.resetForm();
-            this.$emit("closeCreateNote");
           });
       }
     },

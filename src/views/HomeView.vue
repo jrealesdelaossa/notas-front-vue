@@ -22,24 +22,18 @@
     <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list nav dense>
         <v-list-item-group v-model="group" active-class="green text--accent-4">
-          <v-list-item>
+          <v-list-item to="/home/notas">
             <v-list-item-icon>
               <v-icon>fa-solid fa-clipboard</v-icon>
             </v-list-item-icon>
-            <v-list-item-title @click="drawer = false"
-              ><router-link to="home/notas"
-                >Notas</router-link
-              ></v-list-item-title
-            >
+            <v-list-item-title @click="drawer = false">Notas</v-list-item-title>
           </v-list-item>
 
-          <v-list-item>
+          <v-list-item to="/home/chat">
             <v-list-item-icon>
               <v-icon>fa-solid fa-comments</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>
-              <router-link to="home/chat">Chat</router-link>
-            </v-list-item-title>
+            <v-list-item-title> Chat </v-list-item-title>
           </v-list-item>
         </v-list-item-group>
       </v-list>
